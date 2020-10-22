@@ -1,0 +1,22 @@
+# Cache files.
+__pycache__/
+
+# Egg-info folder.
+pd_mesh_net.egg-info/
+
+# Dataset folders.
+test/common_data/shrec2016*
+test/common_data/coseg_config_A
+test/common_data/human_seg
+
+datasets/processed/
+datasets/raw/
+
+# Output data of tests.
+test/output_data/
+
+# Output of processing and training jobs.
+tensorboard/
+*.yml
+*.pkl
+*.pth
