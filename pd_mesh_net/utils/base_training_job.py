@@ -199,16 +199,6 @@ class BaseTrainingJob():
             except OSError:
                 raise OSError("Error while trying to create folder "
                               f"'{self.__log_folder}'. Exiting.")
-        # Create the checkpoint subfolder if nonexistent.
-        self.__checkpoint_subfolder = os.path.join(self.__log_folder,
-                                                   self.__training_job_name,
-                                                   'checkpoints')
-        if (not os.path.exists(self.__checkpoint_subfolder)):
-            try:
-                os.makedirs(self.__checkpoint_subfolder)
-            except OSError:
-                raise OSError("Error while trying to create folder "
-                              f"'{self.__checkpoint_subfolder}'. Exiting.")
 
         # If nonexistent, create the subfolder of the log folder associated with
         # the current training job. Otherwise, verify if a saved checkpoint can
@@ -223,6 +213,17 @@ class BaseTrainingJob():
                 raise OSError(
                     "Error while trying to create the log subfolder "
                     f"'{complete_path_logs_current_training_job}'. Exiting. ")
+            
+            # Create the checkpoint subfolder if nonexistent.
+            self.__checkpoint_subfolder = os.path.join(self.__log_folder,
+                                                       self.__training_job_name,
+                                                       'checkpoints')
+            if (not os.path.exists(self.__checkpoint_subfolder)):
+                try:
+                    os.makedirs(self.__checkpoint_subfolder)
+                except OSError:
+                    raise OSError("Error while trying to create folder "
+                                  f"'{self.__checkpoint_subfolder}'. Exiting.")
             self.__continue_training_from_previous_checkpoint = False
             self.__found_job_folder = False
         else:
